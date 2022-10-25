@@ -1,11 +1,8 @@
 ﻿namespace MessageBox
 {
-    internal partial class MessageBox
+    public enum State
     {
-        public enum State
-        {
-            Ok,
-            Cancel
-        }
+        Ok,
+        Cancel
     }
 }
