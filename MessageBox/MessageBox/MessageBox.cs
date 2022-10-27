@@ -3,6 +3,7 @@
     public class MessageBox
     {
         public event Action<State>? OnClose;
+
         public async void Open()
         {
             Console.WriteLine("Window has opened");
