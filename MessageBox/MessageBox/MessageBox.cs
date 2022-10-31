@@ -3,7 +3,6 @@
     public class MessageBox
     {
         public event Action<State>? OnClose;
-
         public async void Open()
         {
             Console.WriteLine("Window has opened");
@@ -12,7 +11,7 @@
             OnClose?.Invoke(GetRandomStatus());
         }
 
-        public State GetRandomStatus()
+        public static State GetRandomStatus()
         {
             var rnd = new Random().Next(0, 2);
             if (rnd == 1)
@@ -22,18 +21,6 @@
             else
             {
                 return State.Cancel;
-            }
-        }
-
-        public void EventHandler(State state)
-        {
-            if (state == State.Ok)
-            {
-                Console.WriteLine("Operation is succesfull");
-            }
-            else
-            {
-                Console.WriteLine("Operation has denied");
             }
         }
     }

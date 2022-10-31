@@ -2,13 +2,26 @@
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var messageBox = new MessageBox();
-            messageBox.OnClose += messageBox.EventHandler;
+            var tcs = new TaskCompletionSource();
+            messageBox.OnClose += (State state) =>
+            {
+                if (state == State.Ok)
+                {
+                    Console.WriteLine("Operation is succesfull");
+                }
+                else
+                {
+                    Console.WriteLine("Operation has denied");
+                }
+
+                tcs.SetResult();
+            };
+
             messageBox.Open();
-            Task.Delay(7000).Wait();
-            Console.WriteLine("Done");
+            await tcs.Task;
         }
     }
 }
